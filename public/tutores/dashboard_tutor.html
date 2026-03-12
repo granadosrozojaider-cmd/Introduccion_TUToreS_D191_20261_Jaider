@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Tutor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121416; color: #e9ecef; }
+        .navbar { border-bottom: 1px solid #343a40; }
+        .card-custom { background-color: #1c1f23; border: 1px solid #343a40; border-radius: 12px; }
+        .card-header-custom { background-color: #198754; color: white; padding: 15px; font-weight: 600; border-radius: 12px 12px 0 0; }
+        .form-label { color: #adb5bd; font-size: 0.85rem; }
+        .form-control { background-color: #ffffff !important; color: #000000 !important; }
+        .table-container { background-color: #1c1f23; border-radius: 10px; padding: 20px; border: 1px solid #343a40; }
+        .table { color: #e9ecef; }
+        .table thead th { background-color: #2c3035; color: #198754; border-bottom: 2px solid #343a40; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark mb-4 shadow">
+    <div class="container d-flex align-items-center">
+        <span class="navbar-brand mb-0 h1">Panel Tutor</span>
+        <button class="btn btn-outline-danger btn-sm" onclick="logout()">Cerrar sesión</button>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card-custom mb-5 shadow">
+                <div class="card-header-custom text-center h5">Proponer Nueva Tutoría</div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Nombre de la Materia</label>
+                            <input id="materiaPropuesta" class="form-control" placeholder="Ej: Cálculo Diferencial">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fecha</label>
+                            <input type="date" id="fechaPropuesta" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Hora Inicio</label>
+                            <input type="time" id="horaInicio" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Hora Fin</label>
+                            <input type="time" id="horaFin" class="form-control">
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button class="btn btn-success w-100 py-2 fw-bold" onclick="proponerTutoria()">PUBLICAR TUTORÍA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="h4 mb-3">Mis Tutorías Registradas</h3>
+            <div class="table-container shadow">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>Fecha</th>
+                                <th>Horario</th>
+                                <th>Duración</th>
+                                <th>Estado</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaMisTutorias"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/tutorias.js"></script>
+
+<script>
+    auth.onAuthStateChanged(user => {
+        if(!user){ 
+            window.location="../index.html"; 
+        } else {
+            eliminarTutoriasPasadas(); 
+            verMisTutorias(); 
+        }
+    });
+</script>
+</body>
+</html>

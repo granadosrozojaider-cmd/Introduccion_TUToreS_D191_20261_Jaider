@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Estudiante - Tutorías</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #121416; color: #e9ecef; }
+        .navbar { border-bottom: 1px solid #343a40; }
+        .table-container { background-color: #1c1f23; border-radius: 12px; padding: 20px; border: 1px solid #343a40; margin-top: 20px; }
+        .table { color: #e9ecef; margin-bottom: 0; }
+        .table thead th { background-color: #2c3035; color: #198754; border-bottom: 2px solid #343a40; text-transform: uppercase; font-size: 0.85rem; }
+        .table-agendada thead th { color: #0dcaf0; }
+        .table-hover tbody tr:hover { background-color: #252a2f; }
+        h3 { color: #ffffff; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark shadow">
+    <div class="container d-flex align-items-center">
+        <img src="../css/LOGO.png" width="60" height="55" class="me-2" onerror="this.style.display='none'">
+        <span class="navbar-brand mb-0 h1">Panel Estudiante</span>
+        <button class="btn btn-outline-danger btn-sm ms-auto" onclick="logout()">Cerrar sesión</button>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Tutorías Disponibles</h3>
+        <span class="badge bg-success" id="totalDisponibles">0 disponibles</span>
+    </div>
+    <div class="table-container shadow mb-5">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Fecha</th>
+                        <th>Horario</th>
+                        <th class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody id="listaPropuestas">
+                    <tr><td colspan="4" class="text-center text-muted">Buscando tutorías...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="text-info">Mis Tutorías Agendadas</h3>
+    </div>
+    <div class="table-container shadow border-info">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle table-agendada">
+                <thead>
+                    <tr>
+                        <th>Materia</th>
+                        <th>Fecha</th>
+                        <th>Horario</th>
+                        <th class="text-center">Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="misTutoriasAgendadas">
+                    <tr><td colspan="4" class="text-center text-muted">No has agendado nada aún.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/tutorias.js"></script>
+
+<script>
+    auth.onAuthStateChanged(user => {
+        if(!user) window.location="../index.html";
+        else {
+            verTutoriasPropuestas();
+            verMisTutoriasAgendadas();
+        }
+    });
+</script>
+</body>
+</html>

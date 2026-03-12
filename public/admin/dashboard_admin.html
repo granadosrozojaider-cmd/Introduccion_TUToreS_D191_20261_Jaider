@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador</title>
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #0f172a; color: white; }
+        .stat-card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            border: 1px solid #334155;
+        }
+        .stat-card h5 { color: #cbd5e1; font-size: 14px; margin-bottom: 10px; text-transform: uppercase; }
+        .stat-card h2 { font-size: 28px; font-weight: bold; margin: 0; }
+        
+        /* Contenedor de la gráfica pequeña y centrado */
+        .chart-wrapper {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+        }
+        canvas { max-height: 250px !important; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex align-items-center">
+        <img src="../css/LOGO.png" width="60" height="55" class="me-2">
+        <span class="navbar-brand fw-bold">Panel Administrador</span>
+        <button class="btn btn-outline-danger ms-auto btn-sm" onclick="logout()">Cerrar sesión</button>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row g-3">
+        <div class="col-md-3"><div class="stat-card"><h5>Total Tutorías</h5><h2 class="text-success" id="totalTutorias">0</h2></div></div>
+        <div class="col-md-3"><div class="stat-card"><h5>Pendientes</h5><h2 class="text-warning" id="tutoriasPendientes">0</h2></div></div>
+        <div class="col-md-3"><div class="stat-card"><h5>Aceptadas</h5><h2 class="text-info" id="tutoriasAceptadas">0</h2></div></div>
+        <div class="col-md-3"><div class="stat-card"><h5>Propuestas</h5><h2 class="text-primary" id="tutoriasPropuestas">0</h2></div></div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md-6"><div class="stat-card"><h5>Estudiantes</h5><h2 class="text-success" id="totalEstudiantes">0</h2></div></div>
+        <div class="col-md-6"><div class="stat-card"><h5>Tutores</h5><h2 class="text-info" id="totalTutores">0</h2></div></div>
+    </div>
+
+    <div class="chart-wrapper shadow mt-5">
+        <h5 class="text-center mb-3">Distribución de Usuarios</h5>
+        <canvas id="graficaUsuarios"></canvas>
+    </div>
+
+    <div class="mt-5">
+        <h3 class="mb-3">Todas las Tutorías</h3>
+        <input class="form-control bg-dark text-white border-secondary mb-3" id="buscarTutoria" placeholder="Buscar tutoría..." onkeyup="buscarTutoria()">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped align-middle">
+                <thead><tr><th>Materia</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr></thead>
+                <tbody id="tablaTutorias"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-5 mb-5">
+        <h3 class="mb-3">Usuarios del Sistema</h3>
+        <input class="form-control bg-dark text-white border-secondary mb-3" id="buscarUsuario" placeholder="Buscar usuario..." onkeyup="buscarUsuario()">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped align-middle">
+                <thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Acción</th></tr></thead>
+                <tbody id="tablaUsuarios"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="../js/firebase.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    cargarTutoriasAdmin();
+    cargarUsuariosAdmin();
+</script>
+</body>
+</html>

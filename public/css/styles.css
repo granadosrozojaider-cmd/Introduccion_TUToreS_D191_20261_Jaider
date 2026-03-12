@@ -1,0 +1,126 @@
+/* ===== FONDO GENERAL ===== */
+
+body{
+background: radial-gradient(circle at top,#0f172a,#020617);
+min-height:100vh;
+margin:0;
+font-family:'Segoe UI',sans-serif;
+color:#f1f5f9;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+background:#020617 !important;
+border-bottom:1px solid #1e293b;
+}
+
+/* ===== TITULOS ===== */
+
+h1,h2,h3,h4,h5{
+color:#22c55e;
+font-weight:600;
+}
+
+/* ===== TARJETAS ===== */
+
+.card{
+background:#0f172a;
+border:none;
+border-radius:15px;
+box-shadow:0 0 25px rgba(0,0,0,0.5);
+color:#f1f5f9;
+}
+
+/* ===== TABLAS ===== */
+
+.table{
+color:#f1f5f9;
+border-color:#334155;
+}
+
+.table thead{
+background:#020617;
+color:#22c55e;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+background:#0f172a;
+}
+
+.table-striped>tbody>tr:nth-of-type(even){
+background:#020617;
+}
+
+/* ===== INPUTS ===== */
+
+.form-control{
+background:#1e293b;
+border:1px solid #334155;
+color:#f1f5f9;
+}
+
+.form-control:focus{
+background:#1e293b;
+color:#ffffff;
+border-color:#22c55e;
+box-shadow:none;
+}
+
+.form-control::placeholder{
+color:#94a3b8;
+}
+
+/* ===== LABELS ===== */
+
+label{
+color:#cbd5f5;
+font-weight:500;
+}
+
+/* ===== BOTONES ===== */
+
+.btn-success{
+background:#16a34a;
+border:none;
+color:white;
+}
+
+.btn-success:hover
+
+.btn-danger{
+background:#dc2626;
+border:none;
+color:white;
+}
+
+.btn-danger:hover
+
+.btn-primary{
+background:#2563eb;
+border:none;
+}
+
+.btn-primary:hover
+
+/* ===== BUSQUEDA ===== */
+
+input[type="search"]{
+color:white;
+}
+
+/* ===== TOAST ===== */
+
+.toast{
+background:#0f172a;
+color:white;
+border:1px solid #334155;
+}
+
+/* ===== CANVAS GRAFICA ===== */
+
+canvas{
+background:#020617;
+padding:20px;
+border-radius:10px;
+}

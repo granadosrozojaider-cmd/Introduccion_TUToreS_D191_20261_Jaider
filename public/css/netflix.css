@@ -1,0 +1,35 @@
+body{
+background:#141414;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+.navbar{
+background:#000;
+}
+
+.card{
+background:#1f1f1f;
+border:none;
+border-radius:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.btn-primary{
+background:#e50914;
+border:none;
+}
+
+.table{
+color:white;
+}
+
+input,select{
+background:#2b2b2b !important;
+color:white !important;
+border:none !important;
+}
