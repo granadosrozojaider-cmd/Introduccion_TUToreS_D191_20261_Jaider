@@ -27,4 +27,4 @@
 
 
 
-   Desarrollado por Jaider Granados Rozo — Ingeniería
+   Desarrollado por Jaider Granados Rozo — Ingeniería en Sistemas 
