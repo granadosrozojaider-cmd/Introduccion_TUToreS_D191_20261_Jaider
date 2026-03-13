@@ -118,7 +118,7 @@ function login() {
             const uid = userCredential.user.uid;
             
             // VALIDACIÓN DE ADMINISTRADOR ESPECÍFICO (HARDCODED)
-            if (correo === "granadosrozojaider@gmail.com" && password === "Jaider23") {
+            if (correo === "tutoadmin@tutorias.com" && password === "Tutohub23") {
                 localStorage.setItem("uid", uid);
                 localStorage.setItem("rol", "admin");
                 window.location = "admin/dashboard_admin.html"; 
