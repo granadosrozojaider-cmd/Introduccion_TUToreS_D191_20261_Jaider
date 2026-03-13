@@ -24,10 +24,7 @@
 - `/js`: Lógica de conexión a base de datos y administración.
 - `/css`: Recursos visuales y estilos personalizados.
 
-## 🔧 Instalación y Configuración
 
-1. **Clonar el repositorio:**
-   git clone [https://github.com/tu-usuario/TutoHub.git](https://github.com/tu-usuario/TutoHub.git)
 
 
    Desarrollado por Jaider Granados Rozo — Ingeniería
