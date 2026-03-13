@@ -39,13 +39,11 @@ function mostrarAlerta(mensaje, tipo = "primary") {
  * Función para registrar usuarios (Firebase Auth + Firestore)
  */
 function registrar() {
-    // Captura de datos
     const nomElem = document.getElementById('nombre');
     const corElem = document.getElementById('correo');
     const pasElem = document.getElementById('password');
     const rolElem = document.getElementById('rol');
 
-    // Validación de existencia de elementos
     if (!nomElem || !corElem || !pasElem || !rolElem) {
         console.error("Error: Algunos IDs del formulario no existen en el HTML.");
         return;
@@ -56,7 +54,6 @@ function registrar() {
     const password = pasElem.value;
     const rol = rolElem.value;
 
-    // Validaciones de contenido
     if (!nombre || !correo || !password) {
         return mostrarAlerta("Por favor, completa todos los campos", "warning");
     }
@@ -65,12 +62,9 @@ function registrar() {
         return mostrarAlerta("La contraseña debe tener al menos 6 caracteres", "warning");
     }
 
-    // 1. Crear usuario en Firebase Authentication
     auth.createUserWithEmailAndPassword(correo, password)
         .then(userCredential => {
             const uid = userCredential.user.uid;
-
-            // 2. Guardar datos adicionales en Firestore usando el UID como nombre del documento
             return db.collection("usuarios").doc(uid).set({
                 nombre: nombre,
                 correo: correo,
@@ -89,8 +83,6 @@ function registrar() {
             console.error("Error en registro:", error);
             if (error.code === 'auth/email-already-in-use') {
                 mostrarAlerta("Este correo ya está registrado", "danger");
-            } else if (error.code === 'auth/invalid-email') {
-                mostrarAlerta("El formato del correo es inválido", "danger");
             } else {
                 mostrarAlerta("Error: " + error.message, "danger");
             }
@@ -98,7 +90,7 @@ function registrar() {
 }
 
 /**
- * Función de inicio de sesión
+ * Función de inicio de sesión optimizada
  */
 function login() {
     const corElem = document.getElementById("correo");
@@ -121,36 +113,38 @@ function login() {
             if (correo === "tutoadmin@tutorias.com" && password === "Tutohub23") {
                 localStorage.setItem("uid", uid);
                 localStorage.setItem("rol", "admin");
-                window.location = "admin/dashboard_admin.html"; 
-                return; 
+                window.location.href = "admin/dashboard_admin.html"; 
+                return null; // Detiene la búsqueda en Firestore
             }
 
             // Consultar rol en Firestore para usuarios normales
             return db.collection("usuarios").doc(uid).get();
         })
         .then(doc => {
-            if (!doc) return; // Evitar error si entró como admin hardcoded
+            if (doc === null) return; // Salir si ya es admin
 
-            if (doc.exists) {
+            if (doc && doc.exists) {
                 const datos = doc.data();
                 localStorage.setItem("uid", datos.uid);
                 localStorage.setItem("rol", datos.rol);
                 
                 // Redirección dinámica según el rol
                 if (datos.rol === "tutor") {
-                    window.location = "tutores/dashboard_tutor.html";
+                    window.location.href = "tutores/dashboard_tutor.html";
                 } else if (datos.rol === "estudiante") {
-                    window.location = "estudiantes/dashboard_estudiante.html";
+                    window.location.href = "estudiantes/dashboard_estudiante.html";
                 } else if (datos.rol === "admin") {
-                    window.location = "admin/dashboard_admin.html";
+                    window.location.href = "admin/dashboard_admin.html";
                 }
-            } else {
+            } else if (doc) {
                 mostrarAlerta("Perfil no encontrado en la base de datos", "danger");
             }
         })
         .catch(error => {
-            console.error("Error Auth:", error);
-            mostrarAlerta("Correo o contraseña incorrectos", "danger");
+            if (error) {
+                console.error("Error Auth:", error);
+                mostrarAlerta("Correo o contraseña incorrectos", "danger");
+            }
         });
 }
 
@@ -162,11 +156,10 @@ function logout() {
         localStorage.clear();
         const path = window.location.pathname;
         
-        // Ajuste de ruta si el usuario está dentro de una subcarpeta
         if (path.includes("/admin/") || path.includes("/tutores/") || path.includes("/estudiantes/")) {
-            window.location = "../index.html";
+            window.location.href = "../index.html";
         } else {
-            window.location = "index.html";
+            window.location.href = "index.html";
         }
     }).catch(error => {
         console.error("Error logout:", error);

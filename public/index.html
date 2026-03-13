@@ -1,234 +1,143 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tuto-Hub</title>
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="css/styles.css">
-
-<style>
-
-body{
-
-background: radial-gradient(circle at top,#0f172a,#020617);
-
-min-height:100vh;
-
-margin:0;
-
-display:flex;
-
-flex-direction:column;
-
-font-family:'Segoe UI',sans-serif;
-
-}
-
-/* NAVBAR */
-
-.navbar{
-
-background:#020617 !important;
-
-border-bottom:1px solid #1e293b;
-
-}
-
-/* CONTENEDOR PRINCIPAL */
-
-.main-container{
-
-flex:1;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-padding:20px;
-
-}
-
-/* TARJETA LOGIN */
-
-.card-login{
-
-background:#0f172a;
-
-border:none;
-
-border-radius:18px;
-
-padding:40px;
-
-width:100%;
-
-max-width:420px;
-
-box-shadow:0 0 40px rgba(0,0,0,0.6);
-
-color:white;
-
-}
-
-/* TITULO */
-
-.card-login h2{
-
-color:#22c55e;
-
-font-weight:600;
-
-margin-bottom:25px;
-
-text-align:center;
-
-}
-
-/* INPUTS */
-
-.form-control{
-
-background:#1e293b;
-
-border:none;
-
-color:white;
-
-height:45px;
-
-border-radius:10px;
-
-}
-
-.form-control::placeholder{
-
-color:#cbd5f5;
-
-}
-
-/* BOTON LOGIN */
-
-.btn-primary{
-
-background:#16a34a;
-
-border:none;
-
-height:45px;
-
-font-weight:500;
-
-}
-
-.btn-primary:hover{
-
-background:#22c55e;
-
-}
-
-/* BOTON REGISTRO */
-
-.btn-success{
-
-background:#15803d;
-
-border:none;
-
-height:45px;
-
-}
-
-.btn-success:hover{
-
-background:#22c55e;
-
-}
-
-/* TEXTO */
-
-.text-muted{
-
-color:#94a3b8 !important;
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TutoHub - Iniciar Sesión</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #020617 !important;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* TARJETA LOGIN */
+        .card-login {
+            background: #0f172a;
+            border: none;
+            border-radius: 18px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            color: white;
+        }
+
+        .card-login h2 {
+            color: #22c55e;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-control {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: white;
+            height: 45px;
+            border-radius: 10px;
+        }
+
+        .form-control:focus {
+            background: #1e293b;
+            color: white;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 0.25rem rgba(34, 197, 94, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        .btn-primary {
+            background: #16a34a;
+            border: none;
+            height: 45px;
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background: #22c55e;
+        }
+
+        .btn-success {
+            background: #1e293b;
+            border: 1px solid #16a34a;
+            color: #22c55e;
+            height: 45px;
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+            color: white;
+        }
+
+        .text-muted {
+            color: #94a3b8 !important;
+        }
+    </style>
 </head>
-
 <body>
 
 <nav class="navbar navbar-dark">
-<div class="container d-flex align-items-center">
-<img src="css/LOGO.png" width="60" height="55" class="me-2">
-<span class="navbar-brand">TutoHub</span>
-</div>
+    <div class="container d-flex align-items-center">
+        <img src="css/LOGO.png" width="60" height="55" class="me-2" alt="Logo">
+        <span class="navbar-brand">TutoHub</span>
+    </div>
 </nav>
 
 <div class="main-container">
+    <div class="card-login">
+        <h2>Iniciar Sesión</h2>
+        
+        <div class="mb-3">
+            <input id="correo" type="email" class="form-control" placeholder="Correo electrónico">
+        </div>
 
-<div class="card-login">
+        <div class="mb-3">
+            <input id="password" type="password" class="form-control" placeholder="Contraseña">
+        </div>
 
-<h2>Iniciar Sesión</h2>
+        <button class="btn btn-primary w-100 mb-4" onclick="login()">Ingresar</button>
 
-<input id="correo" type="email" class="form-control mb-3" placeholder="Correo">
-
-<input id="password" type="password" class="form-control mb-3" placeholder="Contraseña">
-
-<button class="btn btn-primary w-100 mb-3" onclick="login()">Ingresar</button>
-
-<div class="text-center">
-
-<p class="text-muted">¿No tienes cuenta?</p>
-
-<a href="registro.html" class="btn btn-success w-100">Crear cuenta</a>
-
+        <div class="text-center border-top pt-3">
+            <p class="text-muted small">¿No tienes cuenta?</p>
+            <a href="registro.html" class="btn btn-success w-100">Crear cuenta nueva</a>
+        </div>
+    </div>
 </div>
 
-</div>
-
-</div>
-
-<!-- TOAST -->
-
-<div class="position-fixed top-0 end-0 p-3" style="z-index:1100">
-
-<div id="liveToast" class="toast align-items-center text-bg-primary border-0">
-
-<div class="d-flex">
-
-<div class="toast-body" id="toast-body">Mensaje</div>
-
-<button class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-
-</div>
-
-</div>
-
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="js/firebase.js"></script>
 
-<script src="js/alertas.js"></script>
-
 <script src="js/auth.js"></script>
 
 </body>
-
 </html>
